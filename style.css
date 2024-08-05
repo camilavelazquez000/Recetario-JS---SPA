@@ -1,0 +1,65 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+/*Barra de navegacion*/
+.body{
+    background-color: rgb(255, 249, 235);
+}
+
+.navbar{
+    background-color: rgb(144, 238 , 144);
+}
+
+.container-fluid{
+    padding: 0.8rem;
+}
+
+.navbar-collapse {
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*Cards tamaño de las img*/
+.card-img-top {
+    object-fit: cover;
+    height: 11rem; /* Puedes ajustar esta altura según tus necesidades */
+}
+
+/*footer*/
+footer{
+    background-color:rgb(144, 238 , 144) ;
+
+}
+
+/*Img de recetario*/
+.img-rec{
+    height: 18rem;
+    border-radius: 15%;
+}
+
+/*Responsive*/
+@media screen and (max-width: 768px){
+    .navbar-brand{
+        display: none;
+    }
+
+    .cards{
+        flex-direction: column;
+    }
+
+    .footer{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .container-rec{
+        display: flex;
+        flex-direction: column; 
+    }
+
+    .img-rec{
+        padding-top: 3.5rem;
+        width: 100%;
+        height: auto;;
+    }
+}

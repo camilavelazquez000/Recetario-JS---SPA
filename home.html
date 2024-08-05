@@ -1,0 +1,81 @@
+<section class="container">
+    <div class="title container d-flex justify-content-center align-items-center flex-column p-5">
+        <h1 class="fw-bold text-center">¡Recetas al rescate!</h1>
+        <h6 class="fw-light text-center">Soluciones para cualquier restricción alimenticia</h6>
+        <h3 class="text-center">Recetas veganas, vegetarianas y sin gluten.</h3>
+    </div>
+    <div class="cards d-flex justify-content-center align-items-center">
+
+        <div class="card m-2" style="width: 20rem;">
+            <img src="Imagenes/Salteado de Quinoa con Verduras.jpg" class="card-img-top" alt="Receta vegana">
+            <div class="card-body">
+                <h5 class="card-title fs-3">Menú vegano</h5>
+                <p class="card-text">Disfruta de esta deliciosa ensalada de quinoa con un toque de verduras frescas y un sabor único. Perfecta para un almuerzo ligero y saludable.</p>
+                <a href="#" class="btn btn-dark" id="vegano">Ver más</a>
+            </div>
+        </div>
+
+        <div class="card m-2" style="width: 20rem;">
+            <img src="Imagenes/Tarta de espinaca y ricota Receta.jpg" class="card-img-top" alt="Receta vegetariana">
+            <div class="card-body">
+                <h5 class="card-title fs-3">Menú Vegetariano</h5>
+                <p class="card-text">Sabor y textura se unen en esta tarta de espinacas y ricotta, perfecta para un brunch o cena ligera. Un deleite para los sentidos.</p>
+                <a href="#" class="btn btn-dark" id="vegetariano">Ver más</a>
+            </div>
+        </div>
+
+        <div class="card m-2" style="width: 20rem;">
+            <img src="Imagenes/arroz con pollo.jpg" class="card-img-top" alt="Receta sin gluten">
+            <div class="card-body">
+                <h5 class="card-title fs-3">Menú sin gluten</h5>
+                <p class="card-text">Un clasico con un toque saludable. Nuestro arroz con pollo y verduras es una opción sin gluten que satisfará tus antojos sin comprometer tu dieta.</p>
+                <a href="#" id="sin_gluten" class="btn btn-dark">Ver más</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", ()=> {
+    //SPA
+    //Traigo todos los links que se clickeen
+    let links = document.querySelectorAll("a");
+    let section = document.querySelector("section");
+
+    //Recorro cada uno de los links
+    links.forEach((link) => {
+        link.addEventListener("click", (e) => {
+            e.preventDefault(); // Evita el comportamiento por defecto del enlace
+            let id = link.id;
+            let archivo = id + ".html";
+            let xhr = ajax(archivo);
+            xhr.addEventListener("load", () => {
+                if (xhr.status === 200) {
+                    section.innerHTML = xhr.response;
+                } else {
+                    section.innerHTML = "<p>Error al cargar el contenido</p>";
+                }
+            });
+        });
+    });
+
+    // Cargar la página inicial
+    let pagina_inicial = ajax("home.html");
+    pagina_inicial.addEventListener("load", () => {
+        if (pagina_inicial.status === 200) {
+            section.innerHTML = pagina_inicial.response;
+        } else {
+            section.innerHTML = "<p>Error al cargar el contenido inicial</p>";
+        }
+    });
+
+    function ajax(url, metodo) {
+        let http_metodo = metodo || "GET";
+        let xhr = new XMLHttpRequest();
+        xhr.open(http_metodo, url);
+        xhr.send();
+        return xhr;
+    }
+})
+</script>
